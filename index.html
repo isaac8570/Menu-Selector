@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍽️ 오늘 뭐 먹지?! - 저녁메뉴 룰렛</title>
+    <meta name="description" content="오늘 저녁 뭐 먹을지 고민된다면? 운명의 룰렛을 돌려보세요!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <span class="emoji">🍜</span>
+                오늘 뭐 먹지?!
+                <span class="emoji">🍔</span>
+            </h1>
+            <p class="subtitle">버튼을 눌러 룰렛을 돌리고, 원할 때 멈춰보세요!</p>
+        </header>
+
+        <div class="main-card">
+            <div class="slot-container">
+                <div class="slot-display" id="slotDisplay">
+                    <div class="slot-reel" id="slotReel">
+                        <!-- Menu items will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" id="startBtn" onclick="startSpin()">
+                        🎰 돌리기!
+                    </button>
+                    <button class="btn btn-stop hidden" id="stopBtn" onclick="stopSpin()">
+                        ✋ 멈춰!
+                    </button>
+                </div>
+
+                <div class="result-display" id="resultDisplay">
+                    <div class="result-waiting">
+                        버튼을 눌러 오늘의 메뉴를 정해보세요 ✨
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-value" id="spinCount">0</div>
+                    <div class="stat-label">번 시도</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="indecisionLevel">�</div>
+                    <div class="stat-label">결정장애 레벨</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <div class="section-header" onclick="toggleMenuList()">
+                <div class="section-title">
+                    📋 전체 메뉴 목록
+                    <span class="menu-count" id="menuCount">(0개)</span>
+                </div>
+                <div class="section-toggle" id="toggleIcon">▼</div>
+            </div>
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be inserted here -->
+            </div>
+            <div class="menu-actions">
+                <button class="btn-add" onclick="openAddModal()">➕ 메뉴 추가</button>
+                <button class="btn-reset" onclick="resetToDefault()">🔄 기본 메뉴로 초기화</button>
+            </div>
+        </div>
+
+        <!-- 메뉴 추가 모달 -->
+        <div class="modal-overlay hidden" id="addModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>🍽️ 새 메뉴 추가</h3>
+                    <button class="modal-close" onclick="closeAddModal()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="menuName">메뉴 이름</label>
+                        <input type="text" id="menuName" placeholder="예: 엽기떡볶이" maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="menuEmoji">이모지 (선택)</label>
+                        <input type="text" id="menuEmoji" placeholder="예: 🔥" maxlength="4">
+                    </div>
+                    <div class="form-group">
+                        <label for="menuComment">한줄 코멘트 (선택)</label>
+                        <input type="text" id="menuComment" placeholder="예: 매운맛 도전!" maxlength="30">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" onclick="closeAddModal()">취소</button>
+                    <button class="btn-confirm" onclick="addNewMenu()">추가하기</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>
+                <span class="footer-emoji">🤷</span>
+                어차피 뭘 골라도 맛있어요
+                <span class="footer-emoji">🤷</span>
+            </p>
+        </footer>
+    </div>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
